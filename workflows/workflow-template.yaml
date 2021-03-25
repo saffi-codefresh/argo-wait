@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: wait
+spec:
+  entrypoint: wait
+  arguments: # default values
+    parameters:
+      - name: seconds
+        value: "5"
+  templates:
+    - name: wait
+      inputs:
+        parameters:
+          - name: seconds
+      container:
+        image: roikramer/wait
+        command: ["wait"]
+        args:
+          - exec
+          - "{{inputs.parameters.seconds}}"

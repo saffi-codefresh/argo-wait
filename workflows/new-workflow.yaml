@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: wait-
+spec:
+  entrypoint: entrypoint
+  arguments:
+    parameters:
+    - name: seconds
+      value: "6"
+  templates:
+  - name: entrypoint
+    steps:
+      - - name: entrypoint
+          templateRef:
+            name: http://localhost:8080/my-org/wait@v0.0.1
+            template: iot-controller
+          arguments:
+            parameters:
+            - name: seconds
+              value: "{{workflow.parameters.seconds}}"

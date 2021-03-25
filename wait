@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+// const yargs = require('yargs');
+// const Client = require('./Client');
+function sleep(ms) {
+    return new Promise((resolve) => { setTimeout(resolve, ms) })
+}
+
+console.log(process.argv);
+const seconds = Number(process.argv[2])*1000;
+console.log(seconds);
+sleep(seconds).then(()=> {
+
+    console.log(`done ${seconds}`);
+
+});

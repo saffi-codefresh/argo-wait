@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: wait-
+spec:
+  entrypoint: entrypoint
+  arguments:
+    parameters:
+    - name: seconds
+      value: "5"
+  templates:
+  - name: entrypoint
+    steps:
+      - - name: entrypoint
+          templateRef:
+            name: wait
+            template: wait
+          arguments:
+            parameters:
+            - name: seconds
+              value: "{{workflow.parameters.seconds}}"
