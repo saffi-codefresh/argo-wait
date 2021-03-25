@@ -14,7 +14,7 @@ spec:
         parameters:
           - name: seconds
       container:
-        image: roikramer/wait
+        image: safficodefresh/wait
         command: ["wait"]
         args:
           - exec
